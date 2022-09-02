@@ -6,5 +6,9 @@ Application de boutique en ligne d'outils tech (tvs, téléphones et tablettes),
 
 # Package utilisés :
 
+## Stylisé avec Bootstrap 
+
+##(voir l'application en ligne)[]
+
 
 Un grand merci au formateur [Donkey Geek](https://github.com/DonkeyGeek) ! 🙏
