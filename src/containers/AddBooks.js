@@ -1,19 +1,31 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 function AddBooks() {
-  return (
+
+    const initialState = {
+        title:'',
+        author:''
+    }
+
+    const [newData, setNewData] = useState(initialState);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+    }
+
+    return (
     <main role="main">
         <div className='jumbotron jumbotron-fluid bg-light'>
             <div className='container text-center'>
                 <h1 className='display-4'>BOOKS</h1>
                 <p>Add a book in your library.</p>
 
-                <form className='form-inline justify-content-center'>
+                <form className='form-inline justify-content-center' onSubmit={handleSubmit}>
                     <div className='form-group'>
-                        <input type="text" className='form-control' placeholder='Title' required></input>
+                        <input type="text" className='form-control' placeholder='Title' required value={newData.title} onChange={(e) => setNewData({...newData, title:e.target.value})}></input>
                     </div>
                     <div className='form-group'>
-                        <input type="text" className='form-control mt-3' placeholder='Author' required></input>
+                        <input type="text" className='form-control mt-3' placeholder='Author' required value={newData.author} onChange={(e) => setNewData({...newData, author:e.target.value})}></input>
                     </div>
                     <div className='form-group'>
                         <button className='btn btn-outline-success mt-3'>Add a book</button>
