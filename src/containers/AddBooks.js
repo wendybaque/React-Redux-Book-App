@@ -4,8 +4,6 @@ import {addBook} from '../redux/actions/actionAddBooks';
 
 function AddBooks({libraryData, addBook}) {
 
-    console.log(libraryData)
-
     const initialState = {
         title:'',
         author:''
@@ -16,11 +14,26 @@ function AddBooks({libraryData, addBook}) {
     const handleSubmit = (e) => {
         e.preventDefault();
         addBook(newData);
-
         //vide le input :
         setNewData(initialState);
     }
 
+    // vérifie si on a qqch dans libraryData :
+    const displayData = libraryData.length > 0 ? libraryData.map((data) => {
+        return (
+            <li key={data.id}className='list-group-item list-group-item-light d-flex justify-content-between'>
+                <span><strong>Title : </strong>{data.title}</span>
+                <span><strong>Author : </strong>{data.author}</span>
+                <button className='btn btn-danger'>X</button>
+            </li>)
+    }) : <p className='text-center'>Aucun livre à afficher</p>
+
+    // n'affiche le bouton de suppression de tous les livres que s'il y a des livres dans le localstorage :
+    const deleteAllBooksBtn = libraryData.length > 0 &&
+    <div className='d-flex justify-content-center'>
+        <button className='btn btn-danger mt-3 mb-3'>Remove all books</button>
+    </div>
+    
     return (
     <main role="main">
         <div className='jumbotron jumbotron-fluid bg-light'>
@@ -47,11 +60,9 @@ function AddBooks({libraryData, addBook}) {
             <div className='row'>
                 <div className='col-md-12'>
                     <ul className='list-group'>
-                        <li className='list-group-item list-group-item-light d-flex justify-content-between'>Books added here !</li>
+                        {displayData}
                     </ul>
-                    <div className='d-flex justify-content-center'>
-                        <button className='btn btn-danger mt-3 mb-3'>Remove all books</button>
-                    </div>
+                    {deleteAllBooksBtn}
                 </div>
             </div>
         </div>
