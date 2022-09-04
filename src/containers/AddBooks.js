@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {connect} from 'react-redux';
-import {addBook, deleteBook} from '../redux/actions/actionAddBooks';
+import {addBook, deleteBook, deleteAllBooks} from '../redux/actions/actionAddBooks';
 import FlipMove from 'react-flip-move';
 
-function AddBooks({libraryData, addBook, deleteBook}) {
+function AddBooks({libraryData, addBook, deleteBook, deleteAll}) {
 
     const initialState = {
         title:'',
@@ -38,7 +38,7 @@ function AddBooks({libraryData, addBook, deleteBook}) {
     // n'affiche le bouton de suppression de tous les livres que s'il y a des livres dans le localstorage :
     const deleteAllBooksBtn = libraryData.length > 0 &&
     <div className='d-flex justify-content-center'>
-        <button className='btn btn-danger mt-3 mb-3'>Remove all books</button>
+        <button className='btn btn-danger mt-3 mb-3' onClick={() => deleteAll()}>Remove all books</button>
     </div>
 
     return (
@@ -87,7 +87,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         addBook:(param) => dispatch(addBook(param)),
-        deleteBook: (id) => dispatch(deleteBook(id))
+        deleteBook: (id) => dispatch(deleteBook(id)),
+        deleteAll: () => dispatch(deleteAllBooks())
     }
 }
 
