@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {connect} from 'react-redux';
-import {addBook} from '../redux/actions/actionAddBooks';
+import {addBook, deleteBook} from '../redux/actions/actionAddBooks';
 import FlipMove from 'react-flip-move';
 
-function AddBooks({libraryData, addBook}) {
+function AddBooks({libraryData, addBook, deleteBook}) {
 
     const initialState = {
         title:'',
@@ -28,7 +28,7 @@ function AddBooks({libraryData, addBook}) {
             <li key={data.id}className='list-group-item list-group-item-light d-flex justify-content-between'>
                 <span><strong>Title : </strong>{data.title}</span>
                 <span><strong>Author : </strong>{data.author}</span>
-                <button className='btn btn-danger'>X</button>
+                <button className='btn btn-danger' onClick={() => deleteBook(data.id)}>X</button>
             </li>)
     }) 
         }
@@ -86,7 +86,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addBook:(param) => dispatch(addBook(param))
+        addBook:(param) => dispatch(addBook(param)),
+        deleteBook: (id) => dispatch(deleteBook(id))
     }
 }
 
