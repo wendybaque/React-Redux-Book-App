@@ -46,7 +46,7 @@ function AddBooks({libraryData, addBook, deleteBook, deleteAll}) {
         <div className='jumbotron jumbotron-fluid bg-light'>
             <div className='container text-center'>
                 <h1 className='display-4'>BOOKS</h1>
-                <p>Add a book in your library.</p>
+                <p>Add a book in your library : </p>
 
                 <form className='form-inline justify-content-center' onSubmit={handleSubmit}>
                     <div className='form-group'>
