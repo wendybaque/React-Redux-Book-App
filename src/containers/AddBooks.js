@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import {connect} from 'react-redux';
 import {addBook, deleteBook, deleteAllBooks} from '../redux/actions/actionAddBooks';
 import FlipMove from 'react-flip-move';
+import { IoIosAddCircleOutline } from 'react-icons/io';
+
 
 function AddBooks({libraryData, addBook, deleteBook, deleteAll}) {
 
@@ -56,7 +58,7 @@ function AddBooks({libraryData, addBook, deleteBook, deleteAll}) {
                         <input type="text" className='form-control mt-3' placeholder='Author' required value={newData.author} onChange={(e) => setNewData({...newData, author:e.target.value})}></input>
                     </div>
                     <div className='form-group'>
-                        <button className='btn btn-outline-success mt-3'>Add a book</button>
+                        <button className='btn btn-outline-success mt-3'>Add a book <IoIosAddCircleOutline/></button>
                     </div>
                 </form>
 

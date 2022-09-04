@@ -1,6 +1,14 @@
-import React from 'react'
+import React, {useState} from 'react';
+import { HiOutlineSearch} from 'react-icons/hi';
 
 function SearchBooks() {
+
+const [title, setTitle] = useState('');
+
+const handleSubmit = (e) => {
+    e.preventDefault();
+}
+
   return (
     <main role="main">
         <div className='jumbotron jumbotron-fluid bg-light'>
@@ -8,12 +16,20 @@ function SearchBooks() {
                 <h1 className='display-4'>BOOKS</h1>
                 <p>Indicate the subject of the book to be searched in Google API :</p>
 
-                <form className='form-inline justify-content-center'>
+                <form className='form-inline justify-content-center' onSubmit={handleSubmit}>
                     <div className='form-group'>
-                        <input type="text" className='form-control' placeholder='What are you looking for ?' required></input>
+                        <input 
+                            type="text" 
+                            className='form-control' 
+                            placeholder='What are you looking for ?' 
+                            required 
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
+                        >
+                        </input>
                     </div>
                     <div className='form-group'>
-                        <button className='btn btn-outline-success mt-3'>Search</button>
+                        <button className='btn btn-outline-success mt-3'>Search <HiOutlineSearch/></button>
                     </div>
                 </form>
 
