@@ -1,13 +1,21 @@
 import React, {useState} from 'react';
-import { HiOutlineSearch} from 'react-icons/hi';
+import {HiOutlineSearch} from 'react-icons/hi';
+import { useSelector, useDispatch } from 'react-redux'
+import { fetchBooks } from '../redux/actions/actionFetchBooks'
 
 function SearchBooks() {
 
-const [title, setTitle] = useState('');
+    const [title, setTitle] = useState('');
 
-const handleSubmit = (e) => {
-    e.preventDefault();
-}
+    const state = useSelector(state => state.search)
+    const dispatch = useDispatch()
+
+    console.log(state);
+
+    const handleSubmit = e => {
+        e.preventDefault();
+        dispatch(fetchBooks(title))
+    }
 
   return (
     <main role="main">

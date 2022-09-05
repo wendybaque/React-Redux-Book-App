@@ -1,10 +1,13 @@
-import {createStore, combineReducers} from 'redux';
-import reducerAddBooks from './reducers/reducerAddBooks';
+import { createStore, combineReducers, applyMiddleware } from 'redux'
+import reducerAddBooks from './reducers/reducerAddBooks'
+import reducerFetchedBooks from './reducers/reducerFetchBooks'
+import thunk from 'redux-thunk'
 
-const rootReducer = combineReducers({
-    library: reducerAddBooks
-});
+const rootreducer = combineReducers({
+    library: reducerAddBooks,
+    search: reducerFetchedBooks
+})
 
-const store = createStore(rootReducer);
+const store = createStore(rootreducer, applyMiddleware(thunk))
 
-export default store;
+export default store
