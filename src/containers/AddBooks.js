@@ -35,7 +35,7 @@ function AddBooks({libraryData, addBook, deleteBook, deleteAll}) {
     }) 
         }
     </FlipMove>
-    : <p className='text-center'>Aucun livre à afficher</p>
+    : <p className='text-center'>No books</p>
 
     // n'affiche le bouton de suppression de tous les livres que s'il y a des livres dans le localstorage :
     const deleteAllBooksBtn = libraryData.length > 0 &&
