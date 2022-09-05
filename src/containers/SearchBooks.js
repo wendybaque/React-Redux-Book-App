@@ -2,6 +2,11 @@ import React, {useState} from 'react';
 import {HiOutlineSearch} from 'react-icons/hi';
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchBooks } from '../redux/actions/actionFetchBooks'
+import {addBook} from '../redux/actions/actionAddBooks';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure();
 
 function SearchBooks() {
 
@@ -15,6 +20,20 @@ function SearchBooks() {
     const handleSubmit = e => {
         e.preventDefault();
         dispatch(fetchBooks(title))
+    }
+
+    const handleSave = (title, authors) => {
+        const bookToSave = {title:title, author:authors}
+        dispatch(addBook(bookToSave))
+        toast.info('Book saved !', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        })
     }
 
    const displayFetchedBooks = state.isLoading ? (
@@ -48,7 +67,10 @@ function SearchBooks() {
                             <h5 className='card-title'>Author : {data.volumeInfo.authors}</h5>
                             <p className='card-text'>Description : {data.volumeInfo.description}</p>
                             <button><a className="btn btn-outline-warning ml-6" href={data.volumeInfo.previewLink} alt="other infos of the book" target="_blank" rel="noopener noreferrer">Other infos</a></button>
-                            <button className='btn btn-outline-secondary'>Save the book</button>
+                            <button 
+                                className='btn btn-outline-secondary'
+                                onClick={() => handleSave(data.volumeInfo.title, data.volumeInfo.authors)}
+                                >Save the book</button>
                         </div>
                     </div>
                 </div>   
