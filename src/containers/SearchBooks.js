@@ -38,8 +38,8 @@ function SearchBooks() {
 
    const displayFetchedBooks = state.isLoading ? (
         <div className='d-flex justify-content-center'>
-            <div className='spinner-boarder text-info' role="status">
-                <span className='sr-only'>Loading...</span>
+            <div className='spinner-border text-info' role="status">
+                <span className='sr-only'></span>
             </div>
         </div>
     ) : state.error !== '' ? (
@@ -61,12 +61,13 @@ function SearchBooks() {
                     </div>
                     <div id={data.id} className='collapse' data-parent="#accordion">
                         <div className='card-body'>
-                            {data.volumeInfo.hasOwnProperty('imageLinks') && <img src={data.volumeInfo.imageLinks.thumbnail} alt={data.volumeInfo.title}/>}
+                            {data.volumeInfo.hasOwnProperty('imageLinks') && 
+                            <img src={data.volumeInfo.imageLinks.thumbnail} alt={data.volumeInfo.title}/>}
                             <br />
                             <h4 className='card-title'>Title : {data.volumeInfo.title}</h4>
                             <h5 className='card-title'>Author : {data.volumeInfo.authors}</h5>
                             <p className='card-text'>Description : {data.volumeInfo.description}</p>
-                            <button><a className="btn btn-outline-warning ml-6" href={data.volumeInfo.previewLink} alt="other infos of the book" target="_blank" rel="noopener noreferrer">Other infos</a></button>
+                            <a className="btn btn-outline-success ml-6" href={data.volumeInfo.previewLink} alt="other infos of the book" target="_blank" rel="noopener noreferrer">Other infos</a>
                             <button 
                                 className='btn btn-outline-secondary'
                                 onClick={() => handleSave(data.volumeInfo.title, data.volumeInfo.authors)}

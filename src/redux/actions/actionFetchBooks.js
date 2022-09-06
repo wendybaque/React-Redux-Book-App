@@ -26,14 +26,14 @@ const fetchBooksError = (error) => {
     }
 }
 
-const GOOGLE_API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
+// const GOOGLE_API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
 export const fetchBooks = (title) => {
     return dispatch => {
 
         dispatch(fetchBooksLoading())
 
-        axios.get(`https://www.googleapis.com/books/v1/volumes?q=${title}&key=${GOOGLE_API_KEY}&maxResults=20`)
+        axios.get(`https://www.googleapis.com/books/v1/volumes?q=${title}&maxResults=20`)
         .then(res => {
 
             const bookItemsArray = res.data.items;
